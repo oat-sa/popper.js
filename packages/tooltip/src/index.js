@@ -308,7 +308,12 @@ export default class Tooltip {
    * @param {HTMLElement|String|false} container
    */
   _append(tooltipNode, container) {
+    const self = this;
     container.appendChild(tooltipNode);
+    // force popper to redraw itself in order to fix word wrap on dynamic content
+    setTimeout(function () {
+      self.show();
+    });
   }
 
   _setEventListeners(reference, events, options) {
