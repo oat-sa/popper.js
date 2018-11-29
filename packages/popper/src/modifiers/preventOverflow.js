@@ -52,6 +52,13 @@ export default function preventOverflow(data, options) {
   const check = {
     primary(placement) {
       let value = popper[placement];
+      if (placement === 'left') {
+        const overlap = boundaries.width - (popper.left + popper.width);
+        if (!options.escapeWithReference && overlap < 0) {
+          const padding = options.padding || 0;
+          value = boundaries.width - popper.width - padding;
+        }
+      }
       if (
         popper[placement] < boundaries[placement] &&
         !options.escapeWithReference

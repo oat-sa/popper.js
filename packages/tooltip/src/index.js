@@ -309,6 +309,7 @@ export default class Tooltip {
    */
   _append(tooltipNode, container) {
     container.appendChild(tooltipNode);
+    setTimeout( () => this.show());
   }
 
   _setEventListeners(reference, events, options) {

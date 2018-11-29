@@ -60,8 +60,14 @@ export default function arrow(data, options) {
   }
   // bottom/right side
   if (reference[side] + arrowElementSize > popper[opSide]) {
-    data.offsets.popper[side] +=
-      reference[side] + arrowElementSize - popper[opSide];
+    const clientWidth = Math.max(document.documentElement.clientWidth, document.documentElement.innerWidth || 0);
+    if(clientWidth < (popper[opSide] + arrowElementSize) && !isVertical){
+      data.offsets.popper[opSide] = clientWidth-2;
+      data.offsets.popper[side] = data.offsets.popper[opSide] - data.popper.width;
+    }else{
+      data.offsets.popper[side] +=
+        reference[side] + arrowElementSize - popper[opSide];
+    }
   }
   data.offsets.popper = getClientRect(data.offsets.popper);
 
