@@ -10,8 +10,8 @@ const watchEnabled = argv.watch;
 // Configs
 const babelConfig = require('@popperjs/babel-config');
 const sourcemap = true;
-const external = ['popper.js'];
-const globals = { 'popper.js': 'Popper' };
+const external = ['./popper'];
+const globals = { './popper': 'Popper' };
 
 function bundle({ input, file, name, banner, miniBanner }) {
   rimraf.sync('dist');
